@@ -1,5 +1,4 @@
-﻿using CathayInterviewAPI.Handler;
-using CathayInterviewAPI.Middleware;
+﻿using CathayInterviewAPI.Middleware;
 using NLog;
 using NLog.Web;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;

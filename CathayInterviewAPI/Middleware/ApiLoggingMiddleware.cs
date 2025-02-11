@@ -26,7 +26,7 @@ namespace CathayInterviewAPI.Middleware
                 using var responseBodyStream = new MemoryStream();
                 context.Response.Body = responseBodyStream;
 
-                await _next(context); // ✅ 執行下一個 Middleware / Controller，如果這裡拋異常，會進入 catch 區塊
+                await _next(context);
 
                 var responseBody = await ReadResponseBody(context.Response);
                 _logger.LogInformation($"[API RESPONSE] {context.Request.Method} {context.Request.Path} | Status: {context.Response.StatusCode} | Body: {responseBody}");
