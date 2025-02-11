@@ -1,8 +1,7 @@
-﻿using CathayInterviewAPI.Handler;
+﻿using CathayInterviewAPI.Extensions;
 using CathayInterviewAPI.Middleware;
 using NLog;
 using NLog.Web;
-using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 var logger = LogManager.Setup().LoadConfigurationFromFile("NLog.config").GetCurrentClassLogger();
 try
@@ -10,21 +9,9 @@ try
     logger.Info("應用程式啟動中...");
 
     var builder = WebApplication.CreateBuilder(args);
-    #region Logging
-    builder.Logging.ClearProviders();
-    builder.Logging.SetMinimumLevel(LogLevel.Information);
-    builder.Host.UseNLog();
-    #endregion
 
-    #region 外部API Log
-    builder.Services.AddTransient<LoggingHttpHandler>();
-    builder.Services.AddHttpClient("ExternalAPI", client =>
-    {
-        client.BaseAddress = new Uri("https://api.coindesk.com/");
-    })
-    .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler())
-    .AddHttpMessageHandler<LoggingHttpHandler>();
-    #endregion
+    builder.Host.ConfigureNLog();
+    builder.Services.AddExternalApiHttpClient();
 
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
