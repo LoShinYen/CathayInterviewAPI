@@ -12,13 +12,14 @@ try
 
     builder.Host.ConfigureNLog();
     builder.Services.AddExternalApiHttpClient();
+    builder.Services.AddEncryptedDbContext(builder.Configuration);
 
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    var app = builder.Build();
 
+    var app = builder.Build();
     app.UseRouting();
 
     if (app.Environment.IsDevelopment())
@@ -38,8 +39,7 @@ try
 }
 catch (Exception ex)
 {
-    logger.Error(ex, "應用程式啟動失敗");
-    throw;
+    logger.Error($"應用程式啟動失敗,{ex.Message}");
 }
 finally
 {

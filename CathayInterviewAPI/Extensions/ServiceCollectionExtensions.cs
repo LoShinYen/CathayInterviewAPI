@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Net.Http;
+﻿using CathayInterviewAPI.Helpers;
+using CathayInterviewAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CathayInterviewAPI.Extensions
 {
@@ -8,7 +8,7 @@ namespace CathayInterviewAPI.Extensions
     {
         public static IServiceCollection AddExternalApiHttpClient(this IServiceCollection services)
         {
-            services.AddTransient<Handler.LoggingHttpHandler>(); // 註冊 LoggingHttpHandler
+            services.AddTransient<Handler.LoggingHttpHandler>();
 
             services.AddHttpClient("ExternalAPI", client =>
             {
@@ -16,6 +16,24 @@ namespace CathayInterviewAPI.Extensions
             })
             .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler())
             .AddHttpMessageHandler<Handler.LoggingHttpHandler>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddEncryptedDbContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            var encryptedConnectionString = configuration.GetConnectionString("DefaultConnection");
+            if (!string.IsNullOrEmpty(encryptedConnectionString))
+            {
+                var decryptedConnectionString = EncryptionHelper.Decrypt(encryptedConnectionString);
+
+                services.AddDbContext<CathayInterviewDBContext>(options =>
+                    options.UseSqlServer(decryptedConnectionString));
+            }
+            else
+            { 
+                throw new Exception("Connection string is empty.");
+            }
 
             return services;
         }
