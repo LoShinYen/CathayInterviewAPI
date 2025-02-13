@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CathayInterviewAPI.Models;
+namespace CathayInterviewAPI.Models.Context;
 
 /// <summary>
 /// 存儲系統支援的語言代碼及名稱

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace CathayInterviewAPI.Models;
+namespace CathayInterviewAPI.Models.Context;
 
 public partial class CathayInterviewDBContext : DbContext
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CathayInterviewAPI.Models;
+namespace CathayInterviewAPI.Models.Context;
 
 /// <summary>
 /// 存儲貨幣的基本資訊，如貨幣代碼

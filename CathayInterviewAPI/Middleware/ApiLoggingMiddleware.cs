@@ -36,7 +36,7 @@ namespace CathayInterviewAPI.Middleware
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"[ERROR] {context.Request.Method} {context.Request.Path} 發生錯誤");
+                _logger.LogError($"[ERROR] {context.Request.Method} {context.Request.Path} 發生錯誤,{ex.Message}");
 
                 // 設定回應為 500 錯誤，並回傳錯誤訊息
                 context.Response.StatusCode = 500;

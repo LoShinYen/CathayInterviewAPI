@@ -1,5 +1,7 @@
 ﻿using CathayInterviewAPI.Helpers;
-using CathayInterviewAPI.Models;
+using CathayInterviewAPI.Mappings;
+using CathayInterviewAPI.Repositories;
+using CathayInterviewAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace CathayInterviewAPI.Extensions
@@ -37,5 +39,27 @@ namespace CathayInterviewAPI.Extensions
 
             return services;
         }
+
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        {
+            services.AddScoped<ICurrencyService, CurrencyService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddInfrastructureRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<ICurrencyRepository, CurrencyRepositroy>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddCustomAutoMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(CurrencyProfile));
+
+            return services;
+        }
+
     }
 }

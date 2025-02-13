@@ -13,6 +13,9 @@ try
     builder.Host.ConfigureNLog();
     builder.Services.AddExternalApiHttpClient();
     builder.Services.AddEncryptedDbContext(builder.Configuration);
+    builder.Services.AddApplicationServices();
+    builder.Services.AddInfrastructureRepositories();
+    builder.Services.AddCustomAutoMapper();
 
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
