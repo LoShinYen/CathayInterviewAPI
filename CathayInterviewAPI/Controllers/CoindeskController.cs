@@ -1,4 +1,5 @@
-﻿using CathayInterviewAPI.Services;
+﻿using CathayInterviewAPI.Helpers;
+using CathayInterviewAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CathayInterviewAPI.Controllers
@@ -11,7 +12,7 @@ namespace CathayInterviewAPI.Controllers
         public async Task<IActionResult> GetCoindeskInfo()
         {
             var result = await coindeskService.QueryCoinDeskInfo();
-            return Ok(result);
+            return ResponseHelper.CreateResponse(result);
         }
     }
 }
