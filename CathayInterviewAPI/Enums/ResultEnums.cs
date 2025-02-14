@@ -9,6 +9,11 @@
         public readonly static ResultBase NotFindCurrecy = new ResultBase(100, "Currency not find", "查無此貨幣");
         #endregion
 
+        #region 600~699
+        public readonly static ResultBase NotFindDocument = new ResultBase(600, "Not Find Document", "查詢不到文件");
+
+        #endregion
+
         public readonly static ResultBase ElseError = new ResultBase(999, "Other errors.", "其他錯誤");
     }
 }

@@ -43,7 +43,7 @@ namespace CathayInterviewAPI.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<ICurrencyService, CurrencyService>();
-
+            services.AddScoped<ICoindeskService, CoindeskService>();
             return services;
         }
 

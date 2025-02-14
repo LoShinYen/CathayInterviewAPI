@@ -1,0 +1,24 @@
+﻿{
+  "currencies": [
+    {
+      "code": "USD",
+      "chinese_name": "美元"
+    },
+    {
+      "code": "GBP",
+      "chinese_name": "英鎊"
+    },
+    {
+      "code": "EUR",
+      "chinese_name": "歐元"
+    },
+    {
+      "code": "JPY",
+      "chinese_name": "日圓"
+    },
+    {
+      "code": "CNY",
+      "chinese_name": "人民幣"
+    }
+  ]
+}
