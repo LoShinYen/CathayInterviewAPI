@@ -11,6 +11,7 @@
 
         #region 600~699
         public readonly static ResultBase NotFindDocument = new ResultBase(600, "Not Find Document", "查詢不到文件");
+        public readonly static ResultBase CoindeskApiError = new ResultBase(601, "Coindesk API Error", "Coindesk API 失敗");
 
         #endregion
 

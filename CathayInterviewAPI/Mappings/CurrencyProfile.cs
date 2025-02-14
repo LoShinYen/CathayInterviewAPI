@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using CathayInterviewAPI.Models.Requests;
 
 namespace CathayInterviewAPI.Mappings
 {

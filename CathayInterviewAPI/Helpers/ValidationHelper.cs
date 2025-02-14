@@ -2,7 +2,6 @@
 {
     public static class ValidationHelper
     {
-
         public static ResponseBase? ValidateStringValue(string inputStr, ResultBase errorResult)
         {
             if (string.IsNullOrEmpty(inputStr))

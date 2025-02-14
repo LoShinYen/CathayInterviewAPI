@@ -63,7 +63,6 @@ namespace CathayInterviewAPI.Services
             return new ResponseBase();
         }
 
-
         private async Task<ResponseBase> ExistingCurrencyAsync(int currencyId)
         {
             var response = new ResponseBase();

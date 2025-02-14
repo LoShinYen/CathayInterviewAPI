@@ -46,5 +46,5 @@ catch (Exception ex)
 }
 finally
 {
-    LogManager.Shutdown(); // 確保 NLog 正確關閉
+    LogManager.Shutdown();
 }
