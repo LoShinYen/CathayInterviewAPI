@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Castle.Components.DictionaryAdapter.Xml;
 using CathayInterviewAPI.Mappings;
 using CathayInterviewAPI.Models.Context;
 using CathayInterviewAPI.Models.Dto;
@@ -79,6 +80,35 @@ namespace CathayInterviewAPITest.Repository
         }
 
         [Fact]
+        public async Task GetCurrencyByCodeAsync_ShouldReturn_CorrectCurrency_WhenExists()
+        {
+            // Arrange
+            int createId = 1;
+            string code = "USDT";
+            using (var context = new CathayInterviewDBContext(_dbContextOptions))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Currencies.Add(new Currency { CurrencyId = createId, CurrencyCode = code });
+                await context.SaveChangesAsync();
+            }
+
+            using (var context = new CathayInterviewDBContext(_dbContextOptions))
+            {
+                var repository = new CurrencyRepositroy(context, _mapper);
+
+                // Act
+                var result = await repository.GetCurrencyByCodeAsync(code);
+
+                // Assert
+                Assert.NotNull(result);
+                Assert.Equal(createId, result.CurrencyId);
+                Assert.Equal(code, result.CurrencyName);
+            }
+        }
+
+        [Fact]
         public async Task CreateCurrency_ShouldAdd_NewCurrency()
         {
             // Arrange
@@ -92,7 +122,7 @@ namespace CathayInterviewAPITest.Repository
                 var repository = new CurrencyRepositroy(context, _mapper);
 
                 // Act
-                await repository.CreateCurrency(newCurrencyDto);
+                await repository.CreateCurrencyAsync(newCurrencyDto);
             }
 
             // Assert

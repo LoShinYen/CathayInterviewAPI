@@ -48,7 +48,7 @@ namespace CathayInterviewAPITest.Services
             var request = new CreateCurrencyRequest { CurrencyCode = "JPY" };
 
             _currencyRepositoryMock
-                .Setup(repo => repo.CreateCurrency(It.IsAny<CreateCurrencyDto>()))
+                .Setup(repo => repo.CreateCurrencyAsync(It.IsAny<CreateCurrencyDto>()))
                 .Returns(Task.CompletedTask);
 
             // Act
