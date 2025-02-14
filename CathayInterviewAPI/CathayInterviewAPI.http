@@ -1,6 +1,32 @@
-@CathayInterviewAPI_HostAddress = http://localhost:5255
+@CathayInterviewAPI_HostAddress = https://localhost:32776
 
-GET {{CathayInterviewAPI_HostAddress}}/weatherforecast/
+### 獲取所有貨幣 (GET)
+GET {{CathayInterviewAPI_HostAddress}}/api/Currency/GetCurrencies
 Accept: application/json
 
-###
+### 創建貨幣 (POST)
+POST {{CathayInterviewAPI_HostAddress}}/api/Currency/CreateCurrency
+Content-Type: application/json
+Accept: application/json
+
+{
+  "currencyCode": "USD"
+}
+
+### 更新貨幣 (PUT)
+PUT {{CathayInterviewAPI_HostAddress}}/api/Currency/UpdateCurrency
+Content-Type: application/json
+Accept: application/json
+
+{
+  "currencyId": 1,
+  "updateCurrencyName": "US Dollar"
+}
+
+### 刪除貨幣 (DELETE)
+DELETE {{CathayInterviewAPI_HostAddress}}/api/Currency/DeleteCurrency/1
+Accept: application/json
+
+### 查詢 Coindesk API 資訊 (POST)
+POST {{CathayInterviewAPI_HostAddress}}/api/Coindesk/GetCoindeskInfo
+Accept: application/json
