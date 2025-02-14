@@ -7,6 +7,7 @@
         #region 100 ~ 199
         public readonly static ResultBase CurrencyIsEmpty = new ResultBase(100, "Currency cannot be null", "貨幣不可為空值");
         public readonly static ResultBase NotFindCurrecy = new ResultBase(100, "Currency not find", "查無此貨幣");
+        public readonly static ResultBase CurrencyDuplicated = new ResultBase(100, "The currency is duplicated", "該貨幣已重複");
         #endregion
 
         #region 600~699

@@ -6,7 +6,9 @@
 
         Task<CurrencyDto> GetCurrencyByIdAsync(int id);
 
-        Task CreateCurrency(CreateCurrencyDto currency);
+        Task<CurrencyDto> GetCurrencyByCodeAsync(string code);
+
+        Task CreateCurrencyAsync(CreateCurrencyDto currency);
 
         Task UpdateCurrencyAsync(CurrencyDto currency);
 

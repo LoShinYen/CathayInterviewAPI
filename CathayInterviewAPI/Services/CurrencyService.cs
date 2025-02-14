@@ -20,15 +20,23 @@ namespace CathayInterviewAPI.Services
 
         public async Task<ResponseBase> CreateCurrencyAsync(CreateCurrencyRequest currency)
         {
+            var result = new ResponseBase();
             var validateCurrencyCode = ValidationHelper.ValidateStringValue(currency.CurrencyCode, ResultEnums.CurrencyIsEmpty);
 
             if (validateCurrencyCode != null) return validateCurrencyCode;
 
+            var existingCurrency = await currencyRepositroy.GetCurrencyByCodeAsync(currency.CurrencyCode);
+            if (validateCurrencyCode != null)
+            {
+                result.setResult(ResultEnums.CurrencyDuplicated);
+                return result;
+            }
+
             var dto = new CreateCurrencyDto { CurrencyCode = currency.CurrencyCode };
 
-            await currencyRepositroy.CreateCurrency(dto);
+            await currencyRepositroy.CreateCurrencyAsync(dto);
 
-            return new ResponseBase();
+            return result;
         }
 
         public async Task<ResponseBase> UpdateCurrencyAsync(UpdateCurrencyRequest model)

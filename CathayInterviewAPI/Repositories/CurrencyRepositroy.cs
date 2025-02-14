@@ -24,7 +24,16 @@ namespace CathayInterviewAPI.Repositories
             return response;
         }
 
-        public async Task CreateCurrency(CreateCurrencyDto currency)
+        public async Task<CurrencyDto> GetCurrencyByCodeAsync(string code)
+        {
+            var query = await context.Currencies.Where(c => c.CurrencyCode == code).FirstOrDefaultAsync();
+
+            var response = mapper.Map<CurrencyDto>(query);
+
+            return response;
+        }
+
+        public async Task CreateCurrencyAsync(CreateCurrencyDto currency)
         {
             var newCurrency = mapper.Map<Currency>(currency);
 
